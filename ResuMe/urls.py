@@ -28,7 +28,7 @@ urlpatterns = [
     path('', include('posts.urls')),
     path('profile/', include('users.urls'), name='profile'),
     path('edit-profile/', profile_views.edit_profile, name='users-edit-profile'),
+    path('users/<str:slug>/',  profile_views.ProfileDetailView.as_view(), name='profile-detail')
 ]
-
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
