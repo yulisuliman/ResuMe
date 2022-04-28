@@ -29,7 +29,7 @@ urlpatterns = [
     path('profile/', include('users.urls'), name='profile'),
     path('direct/', include('direct_message.urls')),
     path('edit-profile/', profile_views.edit_profile, name='users-edit-profile'),
+    path('users/<str:slug>/',  profile_views.ProfileDetailView.as_view(), name='profile-detail')
 ]
-
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

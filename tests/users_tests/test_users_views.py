@@ -71,3 +71,13 @@ class TestProfileServerResponse:
         response = client.get(f'/{url}/')
         assert response.status_code == 200
         assertTemplateUsed(response, template_file)
+
+    def test_access_to_valid_user_profile(self, client):
+        response = client.get('/users/OmerCohenShor/')
+        assert response.status_code == 200
+        assertTemplateUsed(response, 'users/profile_details.html')
+
+    @pytest.mark.parametrize('invalid_profile', ['GIBRISH_PROFILE_PRO', '', '12', '1', '-1', ''])
+    def test_access_to_invalid_user_profile(self, client, invalid_profile):
+        response = client.get(f'/users/{invalid_profile}/')
+        assert response.status_code == 404
