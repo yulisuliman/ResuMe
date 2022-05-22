@@ -20,7 +20,9 @@
           <p class="text-secondary">{{ object.user.email }}</p>
         </div>
       </div>
-    </div>  
+    </div> 
+    <br>
+    <h1> {{object.user.username}}'s posts</h1> 
     {% for post in posts_list %}
       <article class="content-section">
           <div class="media-body">
