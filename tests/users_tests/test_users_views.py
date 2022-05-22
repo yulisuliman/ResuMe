@@ -74,7 +74,7 @@ class TestProfileServerResponse:
 
     def test_access_to_valid_user_profile(self, client, new_user):
         user = save_user(new_user)
-        client.login(username='MatanPeretz', password='test$8979')
+        client.login(username='MatanPeretz', password='matan1234')
         response = client.get(f'/users/{user.username}/')
         assert response.status_code == 200
         assertTemplateUsed(response, 'users/profile_details.html')

@@ -1,12 +1,11 @@
 {% extends "base.html" %}
-{% load static %}
 {% block styles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'users/bla.css' %}">
 {% endblock styles %}
+
 {% block content %}
 
-    <div >
-      <div >
+    <div class="content-section">
+      <div class="media">
         <img class="rounded-circle account-img" src="{{ object.profile_pic.url }}">
         <div class="media-body">
           <h2 class="account-heading">{{ object.user.username }}</h2>
