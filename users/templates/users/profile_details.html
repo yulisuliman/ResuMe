@@ -1,10 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
 {% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'posts/feed.css' %}">
 {% endblock styles %}
 
 {% block content %}
-
-    <div class="content-section">
+    <div class="profile_section">
       <div class="media">
         <img class="rounded-circle account-img" src="{{ object.profile_pic.url }}">
         <div class="media-body">
@@ -19,7 +21,6 @@
         </div>
       </div>
     </div>  
-
     {% for post in posts_list %}
       <article class="content-section">
           <div class="media-body">

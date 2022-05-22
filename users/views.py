@@ -6,6 +6,7 @@ from users.models import Profile
 from django.contrib.auth.mixins import LoginRequiredMixin
 from posts.models import Post
 
+
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
     template_name = 'users/profile_details.html'
@@ -22,7 +23,8 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html', {'title': 'profile'})
+    posts_list = Post.objects.filter(author=request.user)
+    return render(request, 'users/profile.html', {'title': 'profile', 'posts_list': posts_list})
 
 
 def login(request):
