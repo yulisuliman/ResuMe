@@ -72,12 +72,12 @@ class TestProfileServerResponse:
         assert response.status_code == 200
         assertTemplateUsed(response, template_file)
 
-    def test_access_to_valid_user_profile(self, client, new_user):
-        user = save_user(new_user)
+    def test_access_to_valid_user_profile(self, client, persist_post):
         client.login(username='MatanPeretz', password='matan1234')
-        response = client.get(f'/users/{user.username}/')
+        response = client.get(f'/users/{persist_post.author.username}/')
         assert response.status_code == 200
         assertTemplateUsed(response, 'users/profile_details.html')
+        assert persist_post in response.context['posts_list']
 
     @pytest.mark.parametrize('invalid_profile', ['Jonathan', '', '12', '1', '-1', ''])
     def test_access_to_invalid_user_profile(self, client, invalid_profile, new_user):
